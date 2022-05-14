@@ -7,8 +7,8 @@ jobs:
   deploy_in_heroku:
     runs-on: ubuntu-latest
     env:
-      HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      HEROKU_APP: ${{ secrets.HEROKU_APP }}
+      HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY_2 }}
+      HEROKU_APP: ${{ secrets.HEROKU_APP_2 }}
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 17
@@ -19,10 +19,10 @@ jobs:
       - name: Run tests
         run: mvn test
       - name: Generate Docker image
-        run: mvn spring-boot:build-image -DskipTests -Dspring-boot.build-image.imageName=registry.heroku.com/$HEROKU_APP/web
+        run: mvn spring-boot:build-image -DskipTests -Dspring-boot.build-image.imageName=registry.heroku.com/$HEROKU_APP_2/web
       - name: Login in Heroku container registry
         run: heroku container:login
       - name: Push image to Heroku Registry
-        run: docker push registry.heroku.com/$HEROKU_APP/web
+        run: docker push registry.heroku.com/$HEROKU_APP_2/web
       - name: Deploy to Heroku
         run: heroku container:release web
