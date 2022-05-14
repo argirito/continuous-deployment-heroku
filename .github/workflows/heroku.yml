@@ -19,10 +19,10 @@ jobs:
       - name: Run tests
         run: mvn test
       - name: Generate Docker image
-        run: mvn spring-boot:build-image -DskipTests -Dspring-boot.build-image.imageName=registry.heroku.com/$HEROKU_APP_2/web
+        run: mvn spring-boot:build-image -DskipTests -Dspring-boot.build-image.imageName=registry.heroku.com/app-argiro/web
       - name: Login in Heroku container registry
         run: heroku container:login
       - name: Push image to Heroku Registry
-        run: docker push registry.heroku.com/$HEROKU_APP_2/web
+        run: docker push registry.heroku.com/app-argiro/web
       - name: Deploy to Heroku
         run: heroku container:release web
