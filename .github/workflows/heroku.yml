@@ -16,8 +16,6 @@ jobs:
         with:
           distribution: 'adopt'
           java-version: '17'
-      - name: Run tests
-        run: mvn test
       - name: Generate Docker image
         run: mvn spring-boot:build-image -DskipTests -Dspring-boot.build-image.imageName=registry.heroku.com/app-argiro/web
       - name: Login in Heroku container registry
